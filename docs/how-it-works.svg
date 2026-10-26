@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" width="960" height="360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <title>How Daisy the Discord Chatbot works</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b8fa3"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="360" rx="16" fill="#1e1f22"/>
+  <text x="40" y="52" font-size="22" font-weight="700" fill="#f2f3f5">Daisy the Discord Chatbot</text>
+  <text x="40" y="78" font-size="14" fill="#b5bac1">A message's path from a Discord channel to Google Gemini and back</text>
+
+  <!-- 1. Discord user -->
+  <rect x="40" y="120" width="190" height="130" rx="12" fill="#2b2d31" stroke="#5865f2" stroke-width="2"/>
+  <text x="135" y="152" font-size="13" font-weight="700" fill="#949cf7" text-anchor="middle">1 · DISCORD</text>
+  <text x="135" y="182" font-size="15" fill="#f2f3f5" text-anchor="middle">User sends a message</text>
+  <text x="135" y="206" font-size="13" fill="#b5bac1" text-anchor="middle">in a channel, or</text>
+  <text x="135" y="226" font-size="13" fill="#b5bac1" text-anchor="middle">“?message” for a DM</text>
+
+  <!-- 2. Bot -->
+  <rect x="280" y="120" width="190" height="130" rx="12" fill="#2b2d31" stroke="#f0b232" stroke-width="2"/>
+  <text x="375" y="152" font-size="13" font-weight="700" fill="#f0b232" text-anchor="middle">2 · discord_bot.py</text>
+  <text x="375" y="182" font-size="15" fill="#f2f3f5" text-anchor="middle">Reads the message</text>
+  <text x="375" y="206" font-size="13" fill="#b5bac1" text-anchor="middle">runs \commands, or</text>
+  <text x="375" y="226" font-size="13" fill="#b5bac1" text-anchor="middle">passes chat to Gemini</text>
+
+  <!-- 3. GeminiChat -->
+  <rect x="520" y="120" width="190" height="130" rx="12" fill="#2b2d31" stroke="#23a55a" stroke-width="2"/>
+  <text x="615" y="152" font-size="13" font-weight="700" fill="#4fd17f" text-anchor="middle">3 · gemini_chat.py</text>
+  <text x="615" y="182" font-size="15" fill="#f2f3f5" text-anchor="middle">Adds persona + history</text>
+  <text x="615" y="206" font-size="13" fill="#b5bac1" text-anchor="middle">retries if busy, then</text>
+  <text x="615" y="226" font-size="13" fill="#b5bac1" text-anchor="middle">switches models</text>
+
+  <!-- 4. Models -->
+  <rect x="760" y="110" width="160" height="66" rx="12" fill="#2b2d31" stroke="#4a8cff" stroke-width="2"/>
+  <text x="840" y="138" font-size="14" fill="#f2f3f5" text-anchor="middle">Gemini Flash</text>
+  <text x="840" y="158" font-size="12" fill="#b5bac1" text-anchor="middle">main model</text>
+  <rect x="760" y="194" width="160" height="66" rx="12" fill="#2b2d31" stroke="#4a8cff" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="840" y="222" font-size="14" fill="#f2f3f5" text-anchor="middle">Gemini Flash-Lite</text>
+  <text x="840" y="242" font-size="12" fill="#b5bac1" text-anchor="middle">backup when busy</text>
+
+  <!-- Arrows: request -->
+  <line x1="232" y1="170" x2="276" y2="170" stroke="#8b8fa3" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="472" y1="170" x2="516" y2="170" stroke="#8b8fa3" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="712" y1="160" x2="756" y2="143" stroke="#8b8fa3" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="712" y1="200" x2="756" y2="227" stroke="#8b8fa3" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+
+  <!-- Reply path -->
+  <path d="M840,262 V300 H135 V254" fill="none" stroke="#5865f2" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="488" y="322" font-size="13" fill="#949cf7" text-anchor="middle">Reply goes back to Discord, split into 2,000-character pieces if it's long</text>
+</svg>
